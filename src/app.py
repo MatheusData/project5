@@ -10,7 +10,6 @@ from pathlib import Path
 car_data = pd.read_csv("C:/Users/conta/project5/Data/vehicles.csv")
 
 fig= px.histogram(car_data, x= "odometer",title= 'Count x Odometer')
-
 st.title('Histograma com relação entre quantidade de veículos e suas quilometragens')
 st.plotly_chart(fig)
 
