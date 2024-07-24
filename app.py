@@ -7,7 +7,7 @@ import plotly.express as px
 
 from pathlib import Path
 
-car_data = pd.read_csv("C:/Users/conta/project5/Data/vehicles.csv")
+car_data = pd.read_csv(Path("../Data/vehicles.csv"))
 
 
 fig= px.histogram(car_data, x= "odometer",title= 'Count x Odometer')
