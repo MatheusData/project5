@@ -1,33 +1,26 @@
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-import scipy as sp
-import streamlit as st 
 import plotly.express as px
+import streamlit as st
 
-from pathlib import Path
+car_data = pd.read_csv('vehicles_us.csv') #lendo os dados
+hist_button = st.button('Criar histograma') #criar um botão
 
-car_data = pd.read_csv(Path("../Data/vehicles.csv"))
-
-
-fig= px.histogram(car_data, x= "odometer",title= 'Count x Odometer')
-st.title('Histograma com relação entre quantidade de veículos e suas quilometragens')
-st.plotly_chart(fig)
-
-
-
-fig = px.scatter(car_data, x="odometer", y="price", title= 'Odometer x Price')
-st.title('Grafico de dispersão com relação entre preço dos veiculos e suas quilometragens')
-st.plotly_chart(fig)
+if hist_button: #se o botão for clicado
+    st.write('Criando um histograma para o conjunto de dados de anúncios de vendas de carros')
+    fig = px.histogram(car_data, x="odometer")
+    st.plotly_chart(fig, use_container_width=True)
 
 
+car_data = pd.read_csv('vehicles_us.csv') # lendo os dados
 
-hist_button = st.button('Criar histograma')
-     
-if hist_button: 
-         
-         st.write('Criando um histograma com relação entre quantidade de veículos e suas quilometragens')
-         
-         fig = px.histogram(car_data, x="odometer")
-     
-         st.plotly_chart(fig, use_container_width=True)
+# Criar botão para o gráfico de dispersão
+scatter_button = st.button('Criar gráfico de dispersão')
+
+if scatter_button: # Se o botão for clicado
+    st.write('Criando um gráfico de dispersão para odometer vs price') # Escrever uma mensagem
+    
+    # Criar o gráfico de dispersão
+    fig = px.scatter(car_data, x="odometer", y="price")
+    
+    # Exibir o gráfico Plotly interativo
+    st.plotly_chart(fig, use_container_width=True)
